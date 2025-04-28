@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './productos.component.css'
 })
 export class ProductosComponent {
-
+  private carritoSubjet = new BehaviorSubject<{producto:producto;cantidad:number}[]>([])
 }
