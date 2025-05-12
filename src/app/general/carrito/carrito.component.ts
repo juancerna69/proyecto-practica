@@ -1,10 +1,12 @@
 import { Component,OnInit } from '@angular/core';
 import { Producto } from '../../model/productos.model';
 import { CarritoService } from '../../servicios/carrito.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
-  imports: [],
+  imports: [CommonModule,RouterModule],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.css'
 })

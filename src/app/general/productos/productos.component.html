@@ -1,7 +1,7 @@
 <h1>Producto</h1>
 <div class="car-container">
-    <ng-container *ngIf ="Producto && Productos.lenght">
-        <ng-container *ngFor =" let producto of Productos"  > 
+    <ng-container *ngIf ="productos && productos">
+        <ng-container *ngFor =" let producto of productos"  > 
             <div *ngIf = "producto.disponible" class="card">
                 <img [src]="producto.imagen" alt="{{producto.nombre}}" class="product-imagen">
                 <h2>{{producto.nombre}}</h2>

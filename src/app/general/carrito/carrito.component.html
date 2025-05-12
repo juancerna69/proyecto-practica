@@ -1,5 +1,5 @@
 <h1>carrito de compras</h1>
-<div *ngIf = "productosEnCarrito.lenght === 0">
+<div *ngIf = "productosEnCarrito">
     <p>no hay productos en el carrito</p>
 </div>
 
@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let item of productosEnCarrito; let i = index"></tr>
+        <tr *ngFor = "let item of productosEnCarrito; let i = index">
         <td><img [src] = "item.producto.imagen" alt="{{item.producto.nombre}}" style="width: 50px;height: 50px;"></td>
         <td>{{item.producto.nombre}}</td>
         <td>{{item.producto.descripcion}}</td>
@@ -30,6 +30,7 @@
         <td>
             <button (click) = "eliminarProducto(item.producto.id)">eliminar</button>
         </td>
+    </tr>
     </tbody>
 
 </table>

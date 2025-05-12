@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Producto } from '../../model/productos.model';
 import { CarritoService } from '../../servicios/carrito.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-productos',
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css'
 })
@@ -14,9 +16,9 @@ export class ProductosComponent {
     {
     id:1,
     nombre:'producto 1',
-    descripcion:'turbo de auto deportivo',
+    descripcion:'rueda toyo',
     precio:7000000,
-    imagen:'\assets\Garrett_Performance_GTX5533R_GenII__Turbocharger.jpg',
+    imagen:'assets/ruedas.jpg',
     disponible:true,
   
     },
@@ -25,7 +27,7 @@ export class ProductosComponent {
       nombre:'producto 2',
       descripcion:'filtro de aceite',
       precio:170000,
-      imagen:'\assets\What-is-the-Oil-Filters-Primary-Job_-1000x675-1.jpg',
+      imagen:'assets/filtro.jpg',
       disponible:true,
  
     },
@@ -34,7 +36,7 @@ export class ProductosComponent {
     nombre:'producto 3',
     descripcion:'bodykits deportivo',
     precio:2000000,
-    imagen:'\assets\S07968a2cbfcf4fb69650b5fa0fc59d345.avif',
+    imagen:'assets/bodikyts.avif',
     disponible:true,
     
     },
@@ -43,7 +45,47 @@ export class ProductosComponent {
     nombre:'producto 4',
     descripcion:'computadoras de autos',
     precio:3000000,
-    imagen:'\assets\ecus-de-coche.webp',
+    imagen:'assets/ecus-de-coche.webp',
+    disponible:true,
+    },
+    {
+      id:5,
+      nombre:'producto 5',
+      descripcion:'Rinnes Spinners',
+      precio:3000000,
+      imagen:'assets/rinn-spinner.png',
+      disponible:true,
+    },
+    {
+      id:6,
+    nombre:'producto 6',
+    descripcion:'suspencion deportiva',
+    precio:3000000,
+    imagen:'assets/ap_suspension.jpg',
+    disponible:true,
+    },
+    {
+      id:7,
+    nombre:'producto 7',
+    descripcion:'radiador deportivo',
+    precio:3000000,
+    imagen:'assets/radiador.webp',
+    disponible:true,
+    },
+    {
+      id:8,
+    nombre:'producto 8',
+    descripcion:'bloque de motor',
+    precio:3000000,
+    imagen:'assets/bloque.avif',
+    disponible:true,
+    },
+    {
+      id:9,
+    nombre:'producto 9',
+    descripcion:'tapa de cilindros',
+    precio:3000000,
+    imagen:'assets/tapa de cilindros.webp',
     disponible:true,
     }
   ]
