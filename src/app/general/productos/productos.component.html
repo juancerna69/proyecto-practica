@@ -1,7 +1,8 @@
 <h1>Producto</h1>
-<div class="car-container">
+<div class="card-container">
+    <div class="grid-container">
     <ng-container *ngIf ="productos && productos">
-        <ng-container *ngFor =" let producto of productos"  > 
+        <ng-container *ngFor =" let producto of productos"> 
             <div *ngIf = "producto.disponible" class="card">
                 <img [src]="producto.imagen" alt="{{producto.nombre}}" class="product-imagen">
                 <h2>{{producto.nombre}}</h2>
@@ -11,4 +12,5 @@
             </div>
         </ng-container>
     </ng-container>
+    </div>
 </div>

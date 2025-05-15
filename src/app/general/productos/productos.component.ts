@@ -87,6 +87,15 @@ export class ProductosComponent {
     precio:3000000,
     imagen:'assets/tapa de cilindros.webp',
     disponible:true,
+    },
+    {
+      
+      id:10,
+    nombre:'producto 10',
+    descripcion:'pistones deportivos',
+    precio:3000000,
+    imagen:'assets/pistones-deportivos.jpg',
+    disponible:true,
     }
   ]
 

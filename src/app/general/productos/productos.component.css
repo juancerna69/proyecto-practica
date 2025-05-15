@@ -1,0 +1,41 @@
+.body{
+
+}
+.card-container{
+    display: flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Espacia contenido y botón */
+  height: 100%; /* O un alto fijo si lo prefieres */
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.car:hover{
+    transform: scale(1.05);
+}
+
+.car img{
+    object-fit: cover;
+    width: 300px;
+    height: auto;
+}
+.card .btn{
+    background-color: rgb(231, 210,221);
+    color: rgb(8,6,3);
+    border: none;
+    transition: background 0.3s ease-in-out;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,auto);
+    gap: 20px;
+    padding: 20px;
+}
