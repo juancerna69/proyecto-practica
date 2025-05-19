@@ -9,7 +9,7 @@ import { QuienesomosComponent } from './general/quienesomos/quienesomos.componen
 
 export const routes: Routes = [
     
-    {path:'',redirectTo:'/producto',pathMatch:'full'},
+    {path:'',redirectTo:'/inicio',pathMatch:'full'},
     {path:'inicio',component:InicioComponent},
     {path :'home',component:HomeComponent},
     {path:'ofertas',component:OfertasComponent},
