@@ -6,6 +6,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './general/home/home.component';
 import { CarritoComponent } from './general/carrito/carrito.component';
 import { QuienesomosComponent } from './general/quienesomos/quienesomos.component';
+import { ContactoComponent } from './general/contacto/contacto.component';
 
 export const routes: Routes = [
     
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path:'carrito',component:CarritoComponent},
     {path:'footer',component:FooterComponent},
     {path:'quienesomos',component:QuienesomosComponent},
+    {path:'contacto',component:ContactoComponent},
 
 ];
