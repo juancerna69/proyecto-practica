@@ -1,1 +1,36 @@
-<p>favoritos works!</p>
+<div *ngIf = "productosEnCarrito">
+    <p>no hay productos en el carrito</p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>imagen</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+            <th>precio</th>
+            <th>cantidad</th>
+            <th>acciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let item of productosEnCarrito; let i = index">
+        <td><img [src] = "item.producto.imagen" alt="{{item.producto.nombre}}" style="width: 50px;height: 50px;"></td>
+        <td>{{item.producto.nombre}}</td>
+        <td>{{item.producto.descripcion}}</td>
+        <td>{{item.producto.precio}}</td>
+        <td>
+            <button (click)="quitarCantidad(i)">-</button>
+            {{item.cantidad}}
+            <button (click)="agregarCantidad(i)">+</button>
+
+        </td>
+        <td>
+            <i class="fa-solid fa-cart-plus"></i>
+            <button (click) = "eliminarProducto(item.producto.id)">vaciar favorito</button>
+            
+            <button (click) = "eliminarProducto(item.producto.id)">confirmar favorito </button>
+        </td>
+    </tr>
+    </tbody>
