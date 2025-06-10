@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CarritoService } from '../../servicios/carrito.service';
+import jsPDF from 'jspdf';
 
 
 @Component({
@@ -65,8 +66,8 @@ calcularTotal():number{
 emitirFactura():void{
   const datosCliente = this.formularioCompra.value;//datos ingresados en el formulario
   const productos =this.carritoService.obtenerProductos();//productos del carrito
-  const totalFinal= this.calculadorTotal();//total calculado en envio
-}
+  const totalFinal= this.calcularTotal();//total calculado en envio
+
 
 //construye el objeto factura con toda la info necesaria
 this.factura ={
@@ -87,7 +88,7 @@ finalizarCompra():void{
     this.emitirFactura();//crea la factura
     this.generarPDFmodal();//genera y muestra el PDF en modal
   }else{
-    this.formularioCompra.markALLAstouched()//marca todos los campos como tocados para mostrar errores
+      this.formularioCompra.markAllAsTouched(); //Marca todos los campos como tocados para mostrar errores
   }
 }
 
@@ -95,25 +96,25 @@ finalizarCompra():void{
 generarPDFmodal():void{
   if (!this.factura)return;
 
-  const doc =new jsPDF();
+    const doc = new jsPDF (); //Crea instancia de jsPDF
 
-  doc.sentFontSize(18)
+  doc.setFontSize(18)
   doc.text('factura de compra',14,20);
 
-  document.sentFontSize(12);
-    doc.text(`fecha:${this.factura.fecha.tolocaleString()}`,14,30);
+ doc.setFontSize(12);
+     doc.text(`fecha:${this.factura.fecha.tolocaleString()}`,14,30);
 
 
     //informcion del cliente
     doc.text('cliente',14,40)
     const c =this.factura.cliente;
     doc.text(`nombre: ${c.nombre}`,20,50);
-     doc.text(`direccion: ${c.direccion}`,20,50);
-      doc.text(`correo: ${c.correo}`,20,50);
-       doc.text(`telefono: ${c.telefono}`,20,50);
-        doc.text(`ciudad: ${c.ciudad}`,20,50);
-         doc.text(`provincia: ${c.provincia}`,20,50);
-          doc.text(`codigo postal: ${c.codigoPostal}`,20,50);
+    doc.text(`direccion: ${c.direccion}`,20,50);
+    doc.text(`correo: ${c.correo}`,20,50);
+    doc.text(`telefono: ${c.telefono}`,20,50);
+    doc.text(`ciudad: ${c.ciudad}`,20,50);
+    doc.text(`provincia: ${c.provincia}`,20,50);
+    doc.text(`codigo postal: ${c.codigoPostal}`,20,50);
 
 //listado de productos con calidad,precio y subtotal
 let y =120
@@ -134,25 +135,33 @@ doc.text(`costo envio :$${this.factura.envio.tofixed(2)}`,14,y)
 y += 10;
 doc.text(`total a pagar :$${this.factura.envio.tofixed(2)}`,14,y)
 
-const pdfBlob= doc.output('blop')
-this.pdfSrc = this.sanitizer.bypassSecuritytrusResourceUrl(URL.createObjectURL(pdfblop))
+const pdfBlob= doc.output('blob')
+    this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(pdfBlob));
 //abre el modal que tiene el pdf
 this.mostrarModal=true;
-//
-cerarModal():void{
-  this.this.mostrarModal =false
-  if(this.pdfSrc){
-    URL.revokeObjectURL(this.this.pdfSrc as any).changingthisbreaksapplicationsecurity
-    this.this.pdfSrc =undefined;
+}
+ // Metodo para cerrar el modal y liberar la URL del PDF para evitar fugas de memoria
+  cerrarModal(): void{
+    this.mostrarModal = false;
+    if(this.pdfSrc) {
+      // se revoca la URL para liberar recursos
+      URL.revokeObjectURL((this.pdfSrc as any).changingThisBreaksApplicationSecurity)
+      this.pdfSrc = undefined
+    }
   }
-}
-imprimirPDF():void{
-  const inframe :HTMLIFrameElement | NULL =this.document.getElementById('pdfFrame') as HTMLAllCollectionML
+//Metodo para imprimir el PDF que esta cargando dentro del iframe en la vista
+  imprimirPDF(): void{
+    //Obtiene la referencia al elemento iframe del DOM mediante su ID 'pdfFrame'
+    //Puede devolver null si no se encuentra el elemento
+    const iframe :  HTMLIFrameElement | null = document.getElementById('pdfFrame') as HTMLIFrameElement;
 
-  if(iframe && inframe.contentWimdow){
-    inframe.contentWimdow.focus()
+    //Verifica que el iframe exista y que tenga un objeto contentWindow valido
+    if(iframe && iframe.contentWindow){
+      //le da foco al contenido del iframe para asegurarse que la ventana correcta esta activa para imprimir
+      iframe.contentWindow.focus();
+
+      //llama al metodo print() de la ventana del iframe para abrirla ventana de impresion del navegador
+      iframe.contentWindow.print();
+    }
   }
-}
-
-}
 }
